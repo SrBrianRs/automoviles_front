@@ -1,0 +1,33 @@
+.profile {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #593b3b;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .avatar {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 5px;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ec6868;
+  }
+  
