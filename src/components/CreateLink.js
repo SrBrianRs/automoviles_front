@@ -179,7 +179,7 @@ return (
                     onChange={(e) =>
                         setFormState({
                             ...formState,
-                            consumption: parseFloat(e.target.value)
+                            consumption: e.target.value
                         })
                     }
                     type="number"
@@ -192,7 +192,7 @@ return (
                     onChange={(e) =>
                         setFormState({
                             ...formState,
-                            price: parseFloat(e.target.value)
+                            price: e.target.value
                         })
                     }
                     type="number"
