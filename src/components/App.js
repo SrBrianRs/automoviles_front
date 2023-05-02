@@ -1,3 +1,4 @@
+//import logo from './../logo.svg';
 import './../styles/App.css';
 import LinkList from './LinkList';
 import CreateLink from './CreateLink';
@@ -14,11 +15,13 @@ function App ()  {
         <Routes>
 
           <Route  path="/Perfil" element={<Perfil/>} />
+
           <Route path="/" element={<LinkList/>} />
           <Route
             path="/create"
             element={<CreateLink/>}
           />
+          
         </Routes>
       </div>
     </div>
