@@ -5,7 +5,9 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
-
+import { setContext } from '@apollo/client/link/context';
+import { AUTH_TOKEN } from './constants';
+import './i18nextConf';
 
 import {
   ApolloProvider,
@@ -15,11 +17,26 @@ import {
 } from '@apollo/client';
 
 const httpLink = createHttpLink({
-  uri: 'https://srbrianrs-srbrianrs.cloud.okteto.net/graphql/'
+  uri: 'http://localhost:8000/graphql/'
 });
 
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `JWT ${token}` : ''
+    }
+  };
+});
+
+
+
 const client = new ApolloClient({
-  link: httpLink,
+  //link: httpLink,
+  link: authLink.concat(httpLink),
+
   cache: new InMemoryCache()
 });
 

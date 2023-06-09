@@ -5,6 +5,9 @@ import CreateLink from './CreateLink';
 import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import Perfil from './Perfil';
+import Login from './Login';
+import TextDavinci from './openai/TextDavinci';
+import ImageDalle from './openai/ImageDalle';
 
 
 function App ()  {
@@ -21,6 +24,10 @@ function App ()  {
             path="/create"
             element={<CreateLink/>}
           />
+          <Route path="/login" element={<Login/>} />
+
+          <Route path='/davinci' element={<TextDavinci/>} />
+          <Route path="/imagesIA" element={<ImageDalle/>} />
           
         </Routes>
       </div>
