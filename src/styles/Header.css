@@ -15,6 +15,7 @@
 	background-color: #cfd0d1;
 	border-radius: 8px;
 	font-size: 0;
+	z-index: 9999;
 }
 nav a {
 	line-height: 50px;
@@ -58,6 +59,9 @@ a:nth-child(6) {
 a:nth-child(7) {
 	width: 100px;
 }
+a:nth-child(8) {
+	width: 100px;
+}
 
 nav .start-home, a:nth-child(1):hover~.animation {
 	width: 100px;
@@ -93,6 +97,11 @@ nav .start-blog, a:nth-child(7):hover~.animation {
 	width: 160px;
 	left: 610px;
 	background-color: #dee609;
+}
+nav .start-blog, a:nth-child(7):hover~.animation {
+	width: 160px;
+	left: 710px;
+	background-color: #a200f9;
 }
 
 body {

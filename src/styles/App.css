@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Estilo para el contenedor del desplegable */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilo para el botón "Openia Services" del desplegable */
+.dropdown-btn {
+  cursor: pointer;
+}
+
+/* Estilo para el contenido del desplegable */
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  z-index: 1;
+}
+
+/* Estilo para los enlaces del contenido del desplegable */
+.dropdown-content a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding: 4px 0;
+}
+
+/* Estilo para los enlaces del contenido del desplegable al pasar el mouse por encima */
+.dropdown-content a:hover {
+  background-color: #d64c4c;
+}

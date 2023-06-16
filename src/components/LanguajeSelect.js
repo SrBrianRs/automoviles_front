@@ -8,7 +8,7 @@ const languageMap = {
 };
 
 const LanguageSelect = () => {
-  const selected = localStorage.getItem("i18nextLng") || "en";
+  const selected = localStorage.getItem("i18nextLng") || "es";
 
   const [menuAnchor] = React.useState(null);
 

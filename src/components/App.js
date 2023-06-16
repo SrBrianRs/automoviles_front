@@ -6,8 +6,9 @@ import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import Perfil from './Perfil';
 import Login from './Login';
-import TextDavinci from './openai/TextDavinci';
-import ImageDalle from './openai/ImageDalle';
+
+import MenuIAS from './openai/MenuIA';
+import Filter from './Filtrar';
 
 
 function App ()  {
@@ -26,9 +27,13 @@ function App ()  {
           />
           <Route path="/login" element={<Login/>} />
 
-          <Route path='/davinci' element={<TextDavinci/>} />
-          <Route path="/imagesIA" element={<ImageDalle/>} />
           
+          <Route path="/menuia" element={<MenuIAS/>} />
+          <Route path="/search"element={<Filter/>}/>
+
+
+
+
         </Routes>
       </div>
     </div>

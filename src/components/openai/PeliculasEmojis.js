@@ -1,18 +1,17 @@
 import { useState } from "react";
 import "../../styles/ServicesOpenai.css";
-import TextDavinciService from "../../services/service.davinci"
+import EmojisService from "../../services/service.titulosaemojis";
 import { useTranslation } from "react-i18next";
 
-const TextDavinci = ({onCancel, save}) => {
+const Emojis = ({onCancel, save}) => {
   const { t } = useTranslation();
-  const [nameInput, setNameInput] = useState("");
-  const [nameObjectType, setNameObjectType] = useState("");
+  const [texto, setTexto] = useState("");
   const [result, setResult] = useState();
 
   const handleSalir = () => {
     onCancel();
   }
-  
+
   const savePrompt = (modelo, prompt, result) =>{
     save(modelo, prompt, result);
   }
@@ -20,7 +19,7 @@ const TextDavinci = ({onCancel, save}) => {
   async function onSubmit(event) {
     event.preventDefault();
     try {
-      const response = await TextDavinciService.getDaVinci({ objectName: nameInput, objectType: nameObjectType });
+      const response = await EmojisService.getEmojis({texto: texto });
 
       const data = await response;
       console.log(response);
@@ -29,9 +28,8 @@ const TextDavinci = ({onCancel, save}) => {
       }
       console.log("response", response);
       setResult(data.result);
-      savePrompt("text-davinci-003", data.prompt, data.result);
-      setNameInput("");
-      setNameObjectType("");
+      savePrompt(data.model, data.prompt, data.result);
+      setTexto("");
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -44,23 +42,16 @@ const TextDavinci = ({onCancel, save}) => {
       <div className="contentWrapperServices">
 
         <form className="formContainerServices" onSubmit={onSubmit}>
-          <h2>{t('Openai Davinci')}</h2>
-          <h4>{t('Categoria')}</h4>
+          <h2>{t('Convertir titulos de peliculas a emojis')}</h2>
+          <h4>{t('¿Que peliculas quieres convertir?')}</h4>
           <input
             type="text"
-            placeholder={t("¿Acerca de que quieres nombres?")}
-            value={nameObjectType}
-            onChange={(e) => setNameObjectType(e.target.value)}
+            placeholder={t("Texto")}
+            value={texto}
+            onChange={(e) => setTexto(e.target.value)}
             required
           />
-          <h4>{t('Palabra Relacionada')}</h4>
-          <input
-            type="text"
-            placeholder={t("¿Sobre que quieres que se relacione?")}
-            value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
-            required />
-          <button type="submit" value="Generate names">{t('Generar')}  </button>
+          <button type="submit" value="Generate">{t('Generar')}</button>
           <button className="salir" onClick={handleSalir}>{t('Salir')}</button>
           <div className="result">{result}</div>
         </form>
@@ -69,4 +60,4 @@ const TextDavinci = ({onCancel, save}) => {
   );
 }
 
-export default TextDavinci;
+export default Emojis;

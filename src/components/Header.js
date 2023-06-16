@@ -5,7 +5,6 @@ import { AUTH_TOKEN } from '../constants';
 import LanguageSelect from "./LanguajeSelect";
 import { useTranslation } from "react-i18next";
 
-
 const Header = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -33,19 +32,16 @@ const Header = () => {
                     </Link>
 
                     <Link
-                        to="/davinci"
+                        to="/menuia"
                         className="ml1 no-underline black">
-                        {t('Davinci')}
+                        {t('MenuIA')}
                     </Link>
-
-                    <Link
-                        to="/imagesIA"
+                    
+                    <Link 
+                        to={"/search"} 
                         className="ml1 no-underline black">
-                        {t('Imagen')}
-                    </Link>
-
-
-
+                        {t("BD")}</Link>
+                    
 
                     <Link>
                         {authToken ? (
@@ -56,11 +52,11 @@ const Header = () => {
                                     navigate(`/`);
                                 }}
                             >
-                                {t('LOGOUT')}
+                                {t('Logout')}
                             </div>
                         ) : (
                             <Link to="/login" className="ml1 no-underline black">
-                                {t('login')}
+                                {t('Login')}
                             </Link>
                         )}
                     </Link>
@@ -78,6 +74,8 @@ const Header = () => {
                         </div>
 
                     </Link>
+                    
+                    
 
 
 

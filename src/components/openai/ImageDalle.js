@@ -1,16 +1,25 @@
 import { useState } from "react";
-import "../../styles/openai.css";
-import ServiceDalle from "../../services/service.dalle"
-
-export default function ImageDalle() {
+import DalleImageService from "../../services/service.dalle"
+import "../../styles/ServicesOpenai.css";
+import { useTranslation } from "react-i18next";
+const ImageDalle = ({ onCancel, save }) => {
+  const { t } = useTranslation();
   const [descInput, setDesInput] = useState("");
   const [result, setResult] = useState();
+
+  const handleSalir = () => {
+    onCancel();
+  }
+
+  const savePrompt = (modelo, prompt, result) =>{
+    save(modelo, prompt, result);
+  }
 
   async function onSubmit(event) {
     event.preventDefault();
     try {
-      const response = await ServiceDalle.getImgIA({ desc: descInput});
-      
+      const response = await DalleImageService.getImgIA({ desc: descInput });
+
       const data = await response;
       console.log(response);
 
@@ -19,6 +28,7 @@ export default function ImageDalle() {
       }
       console.log("response", response);
       setResult(data.result);
+      savePrompt(data.model, data.prompt, data.result);
       setDesInput("");
     } catch (error) {
       // Consider implementing your own error handling logic here
@@ -28,23 +38,26 @@ export default function ImageDalle() {
   }
 
   return (
-    <div>
-      <title>OpenAI Quickstart</title>
-      <div className="container">
-        <form onSubmit={onSubmit}>
-          <h3>¿Que imagen deseas crear?</h3>
+    <div className="centeredDivServices">
+      <div className="contentWrapperServices">
+
+        <form className="formContainerServices" onSubmit={onSubmit}>
+          <h2>{t('Openai Davinci')}</h2>
+          <h4>{t('¿Que imagen deseas crear?')}</h4>
           <input
-            className="form-input"
             type="text"
-            name="descInput"
-            placeholder="Enter your description"
+            placeholder={t("Dame una descripcion")}
             value={descInput}
             onChange={(e) => setDesInput(e.target.value)}
+            required
           />
-          <input type="submit" value="Generate Image" />
+          <button type="submit" value="Generate image">{t('Generar')}  </button>
+          <button className="salir" onClick={handleSalir}>{t('Salir')}</button>
+          <img className="image" src={result} alt="imagen" style={{ maxWidth: '500px' }} />
         </form>
-        <img className="image" src={result} alt="imagen"/>
       </div>
     </div>
   );
 }
+
+export default ImageDalle;
